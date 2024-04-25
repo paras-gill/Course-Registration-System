@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block title %} Upload Course {% endblock title %}
+
+{% block content %}
+    <h3><u>Upload Course for Registration</u></h3>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Upload</button>
+    </form>
+
+    <br>
+    <button onclick='goBack()'>Go Back</button>  
+    
+    <script>
+        function goBack() {
+        window.location.href = "{% url 'registrarHome' %}";
+        }
+    </script>
+{% endblock content %}

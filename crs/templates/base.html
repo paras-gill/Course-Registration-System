@@ -1,0 +1,35 @@
+<!--This base template is to be used project-wide-->
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <title> {% block title %} CRS {% endblock title %} </title>
+        <style>
+             body {
+                text-align: center; /* Center align the body content */
+            }
+
+            h1 {
+                display: inline-block;
+                border: 1px solid black; /* Add a thin black border */
+                padding: 10px; /* Add some padding for spacing */
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    
+    <body>
+        <h1>Course Registration System</h1>
+        {%  if user.is_authenticated %}
+            <p> 
+                {{user.first_name}} {{user.last_name}}<br><a href="{% url 'logout' %}">log out</a>
+                <br><br><br>
+                
+            </p>
+        {% endif %}
+
+        {% block content %} {% endblock content %}
+    </body>
+
+</html>

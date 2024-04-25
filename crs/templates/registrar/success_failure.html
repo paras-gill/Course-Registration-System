@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{%block title%} Status {% endblock title%}
+
+{% block content %}
+    <p>{{ message|safe}}</p>
+    <br>
+    <button onclick='goBack()'>Go Back</button>  
+
+    <script>
+        function goBack() {
+        window.location.href = "{% url 'registrarHome' %}";
+        }
+    </script>
+    
+{% endblock content %}

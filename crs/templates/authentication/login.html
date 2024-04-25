@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{%block title%} CRS Login {% endblock title%}
+
+{% block content %}
+    <br>
+    <h3><u>Log In</u></h3>
+    <p>{{ message }}</p>
+    <form method="post">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <button type="submit" >Login</button>
+    </form>   
+    <p>Are you a student? Register <a href="{% url 'signup' %}">here</a>.</p>
+{% endblock content %}

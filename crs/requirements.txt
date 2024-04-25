@@ -1,0 +1,3 @@
+django [version]
+openpyxl [version]  // for loading excel file into python script fake50students.py which signs up 50 [fake] students
+ 

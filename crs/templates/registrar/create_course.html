@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %} New Course {% endblock title %}
+
+{% block content %}
+<h3><u>Create New Course</u></h3>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Create</button>
+</form>
+<br>
+    <button onclick='goBack()'>Go Back</button>  
+    
+    <script>
+        function goBack() {
+        window.location.href = "{% url 'registrarHome' %}";
+        }
+    </script>
+{% endblock content %}
