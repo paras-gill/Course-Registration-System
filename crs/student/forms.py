@@ -1,5 +1,6 @@
 from django import forms
 from .models import RegisteredCourses
+from registrar.models import ListCourses
 
 class SelectCourseForm(forms.ModelForm):  
     select = forms.BooleanField(widget=forms.CheckboxInput(attrs={'label': False}), required=False)
@@ -20,8 +21,10 @@ class SelectCourseForm(forms.ModelForm):
     #def __init__(self, *args, **kwargs):
     #    super().__init__(*args, **kwargs)
     #    self.fields['select'].label = False
-    
-SelectCourseFormSet = forms.formset_factory(SelectCourseForm, extra=10)
+
+total_listed_courses = len(ListCourses.objects.all()) 
+#print(total_listed_courses)   
+SelectCourseFormSet = forms.formset_factory(SelectCourseForm, extra=total_listed_courses)
 
 '''
 Why do we use forms.ModelForm as subclass instead of forms.Form ?
