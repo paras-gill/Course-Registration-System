@@ -25,8 +25,14 @@ def login_page(request):
                     return redirect('registrarHome')
                 #elif user.role=='Professor':
                 #    return redirect('professorHome')
-                #elif user.role=='Student':
-                #    return redirect('studentHome')
+                elif user.role=='Student':
+                    #print(user.registration_status)
+                    if user.registration_status==True:
+                        #print('redirecting home 2')
+                        return redirect('studentHome2')
+                    else:
+                        #print('redirecting home 1')
+                        return redirect('studentHome1')
             else:
                 message = 'Login failed! Incorrect email or password'
     return render(request, 'authentication/login.html', context={'form': form, 'message': message})

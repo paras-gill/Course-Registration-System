@@ -2,6 +2,7 @@
 from django import forms
 from .models import AllCourses, ListCourses
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models import Subquery
 
 from django.contrib.auth import get_user_model
 User=get_user_model()
@@ -25,10 +26,17 @@ class ListCoursesForm(forms.ModelForm):
         super(ListCoursesForm, self).__init__(*args, **kwargs) 
         
         # Exclude coursess already selected in the form
-        courses=AllCourses.objects.all()
-        listed_courses=ListCourses.objects.all()
-        courses = courses.exclude(pk__in=listed_courses)
-        course_choices=[(course.id, f'{course.code} - {course.name}') for course in courses]
+
+        
+        listed_courses_pks=ListCourses.objects.values_list('code_id', flat=True) # Primary keys of all listed courses 
+        # code_id refers to FK field 'code' in ListCourses
+        # flat = True specifies that the result should be a flat list rather than a list of tuples.
+        # So, the result will be a single list containing the values of the specified field (code_id in this case) rather than a list of 
+        # tuples where each tuple contains the values of all selected fields. This is useful when you only need values from a single field.
+        
+        courses_available=AllCourses.objects.exclude(pk__in=Subquery(listed_courses_pks)) # Query set of all available courses
+        #courses = courses.exclude(pk__in=listed_courses)  # pk in listed_courses
+        course_choices=[(course.id, f'{course.code} - {course.name}') for course in courses_available]
         self.fields['code'].choices = course_choices
         self.fields['code'].label = 'Course'
         

@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block title %} Student Homepage {% endblock title %}
+
+{% load tz %} <!-- Load the timezone template tags -->
+{% get_current_timezone as TIME_ZONE %} <!-- Get the current timezone -->
+{% now TIME_ZONE as current_time %} <!-- Get the current time in the current timezone -->
+
+
+<p>Registration Open</p>
+{% block content %}
+    <p>Welcome {{request.user.first_name}}! Register for your courses here by checking the boxes.</p>
+    <p> 
+        <p style="display: inline; color: red;">Note 1:</p> You can register for minimum of 3 and maximum of 6 courses.<br>
+        <p style="display: inline; color: red;">Note 2:</p> Maximum  number of students who are allowed to enrol in a course is 20.<br>
+    </p>
+     
+    <div style="display: flex;">
+        <div style="margin-right: 20px;">
+            <table border="1" style="margin: 10px auto; text-align: center;">
+                <thead>
+                    <tr>
+                        <th style="padding: 5px;">S.No.</th>
+                        <th style="padding: 5px;">Course</th>
+                        <th style="padding: 5px;">Registration Start Date</th>
+                        <th style="padding: 5px;">Registration End Date (EOD)</th>
+                        <th style="padding: 5px;">Current No. of Students</th>
+                    </tr>
+                </thead>
+                <tbody>  
+                        {% for course in courses %}  
+                                <tr>
+                                    <td style="padding: 5px;">{{forloop.counter}}</td>
+                                    <td style="padding: 5px;">{{course.code.code}} - {{course.code.name}} </td>
+                                    <td style="padding: 5px;">{{course.start_date.date}}</td>
+                                    <td style="padding: 5px;">{{course.end_date}}</td>
+                                    <td style="padding: 5px;">{{course.student_count}}</td>
+                                </tr>      
+                        {% endfor %} 
+                </tbody>
+            </table>
+        </div>
+
+        <div>
+            <form id="courseSelectionForm" method="post">
+                {% csrf_token %}
+                <table border="1" style="margin: 10px auto; text-align: center;">
+                    <thead>
+                        <tr>
+                            <th style="padding: 5px;">Select</th>
+                        </tr>
+                    </thead>
+                    <tbody>  
+                            {{ formset.management_form }}   <!--Why this is added when we use formsets in django? Otherwise it gives error. Google!-->
+                            {% for form in formset %}   
+                                    <tr>
+                                        <td style="padding: 5px;">{{form.select}}</td>
+                                    </tr>      
+                            {% endfor %}
+                    </tbody>
+                </table>
+                <button type="submit" onclick="return confirmSubmit()">Register</button>
+            </form>  
+            
+            <script>
+                function confirmSubmit() {
+                    // Display a confirmation dialog
+                    var confirmation = confirm("Are you sure you want to submit your choices? You won't be able to change it later.");
+                    
+                    // If user clicks OK, submit the form
+                    if (confirmation) {
+                        document.getElementById("courseSelectionForm").submit();
+                        return true;
+                    } else {
+                        // If user clicks Cancel, do not submit the form
+                        return false;
+                    }
+                }
+                </script>
+        </div>
+    </div>
+    
+      
+
+    
+    <br>
+    
+
+{% endblock content %}

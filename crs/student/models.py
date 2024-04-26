@@ -9,5 +9,8 @@ class RegisteredCourses(models.Model):
     code=models.ForeignKey(AllCourses, on_delete=models.CASCADE)
     select=models.BooleanField(default=False)
 
+    def __str__(self):
+        return self.student.email + " " + self.code.name 
+
 
 

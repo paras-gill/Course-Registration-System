@@ -9,7 +9,19 @@
     <p>Sign Up New Professors <a href="{% url 'profSignUp' %}"> Here </a> </p>
     <p>List Courses <a href="{% url 'uploadCourse' %}"> Here </a> </p>
     <p>Upload Grades <a> Here </a></p>   <!--Add link-->
-    <p>Reset Semester <a href="{% url 'resetSemester' %}"> Here </a> <span style="display: inline; color: red;">&nbsp;&nbsp;Note:</span> (This will unlist all courses)</p>  
+    <p>Reset Semester <a href="{% url 'resetSemester' %}" onclick="return confirmSubmit()"> Here </a> <span style="display: inline; color: red;">&nbsp;&nbsp;Note:</span> (This will unlist all courses)</p>  
     <p>View All Professors <a> Here </a></p>   <!--Add link-->
     <p>View All Students <a> Here </a> </p>  <!--Add link-->
+    
+    <script>
+    function confirmSubmit() {
+        var confirmation = confirm("Are you sure you want to procedd? All the listed course will be removed and all students will be unregistered");
+        if (confirmation) {
+            document.getElementById("changeStatusnForm").submit();
+            return true;
+        } else {
+            return false;
+        }
+    }
+</script>
 {% endblock content %}

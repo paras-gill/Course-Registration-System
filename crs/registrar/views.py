@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from . import forms
 from .models import ListCourses, AllCourses
+from student.models import RegisteredCourses
 from django.db.models import F
 
 from django.contrib.auth import get_user_model
@@ -31,8 +32,7 @@ def create_course(request):
 def upload_course(request):
     if request.method == 'POST':
         form = forms.ListCoursesForm(request.POST)
-        if form.is_valid():
-            
+        if form.is_valid(): 
             # Increment course_count for prof after he has been assigned course
             professor=form.cleaned_data['professor']
             professor_object = User.objects.get(email=professor)
@@ -45,6 +45,9 @@ def upload_course(request):
             form.save()
             return render(request, 'registrar/success_failure.html', {'message' : message} )  
     else:
+        if len(AllCourses.objects.all())==len(ListCourses.objects.all()):
+            message='<span style="color:red;">No course left to be listed!<span>'
+            return render(request, 'registrar/success_failure.html', {'message' : message} )
         form = forms.ListCoursesForm()
     return render(request, 'registrar/upload_course.html', {'form': form})
 
@@ -69,10 +72,12 @@ def prof_signup_page(request):
 def reset_semester(request):  
     
     # Delete all objects from ListCourses model
+    # Delete all objects from RegisteredCourses model
     # Update 'registration_status' and 'course_count' field of User model
     
     if request.method == 'GET':
-        ListCourses.objects.all().delete() 
+        RegisteredCourses.objects.all().delete()
+        #ListCourses.objects.all().delete() 
         User.objects.all().update(course_count=0)
         User.objects.filter(role='Student').update(registration_status=False)
         message='No course listed now. Go back to homePage to list courses again'

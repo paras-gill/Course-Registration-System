@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{%block title%} Your courses {% endblock title%}
+
+{% block content %}
+    <p>Welcome {{request.user.first_name}}. Your registration process is cmplete.</p>
+    <h3><strong><u>Courses</u></strong></h3>
+        {% for course in registered_courses %}
+        <li>{{course.code.code}} -  {{course.code.name}} </li>
+        {% endfor %} 
+{% endblock content %}

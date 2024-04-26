@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{%block title%} Student HomePage {% endblock title%}
+
+{% block content %}
+    <p>{{message|safe}} </p>
+    <br>
+    <br>
+    {% if failure %}
+    <button onclick='goBack()'>Go Back</button>  
+
+    <script>
+        function goBack() {
+        window.location.href = "{% url 'studentHome1' %}";
+        }
+    </script>
+
+    {% else %}
+
+    <button onclick='goBack()'>Go Back</button>  
+
+    <script>
+        function goBack() {
+        window.location.href = "{% url 'studentHome2' %}";
+        }
+    </script>
+
+    {% endif %}
+        
+{% endblock content %}

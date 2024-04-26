@@ -34,8 +34,8 @@ urlpatterns = [
     path('registrarHome/profSignUp', registrar.views.prof_signup_page, name='profSignUp'),
     path('registrarHome/resetSemester', registrar.views.reset_semester, name='resetSemester'),
     
-    #path('studentHome/', student.views.student_home, name='studentHome'),
-    #path('studentHome/', student.views.view_courses, name='viewCourses'),
+    path('studentHome1/', student.views.student_home, name='studentHome1'),
+    path('studentHome2/', student.views.view_courses, name='studentHome2'),
     
     #path('professorHome/', professor.views.professor_home, name='professorHome'),
 
