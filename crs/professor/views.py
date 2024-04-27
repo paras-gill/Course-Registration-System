@@ -7,9 +7,5 @@ User=get_user_model()
 
 @login_required  
 def professor_home(request):
-    courses_teaching=ListCourses.objects.filter(professor=User.objects.get(email = request.user))
-    #course_code = professor_field.pk
-    #course_name = AllCourses.objects.get(code = course_code).name
-    #context={'course_code' : course_code, 'course_name' : course_name}
-    
+    courses_teaching=ListCourses.objects.filter(professor=User.objects.get(email = request.user)) # Query list of courses prof teaching
     return render(request, 'professor/professor_home.html', {'courses_teaching' : courses_teaching})

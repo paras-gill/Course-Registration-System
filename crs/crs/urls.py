@@ -33,6 +33,8 @@ urlpatterns = [
     path('registrarHome/uploadCourse', registrar.views.upload_course, name='uploadCourse'),
     path('registrarHome/profSignUp', registrar.views.prof_signup_page, name='profSignUp'),
     path('registrarHome/resetSemester', registrar.views.reset_semester, name='resetSemester'),
+    path('registrarHome/allStudents', registrar.views.all_students, name='allStudents'),
+    path('registrarHome/allProfessors', registrar.views.all_professors, name='allProfessors'),
     
     path('studentHome1/', student.views.student_home, name='studentHome1'),
     path('studentHome2/', student.views.view_courses, name='studentHome2'),

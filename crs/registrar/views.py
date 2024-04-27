@@ -82,3 +82,15 @@ def reset_semester(request):
         User.objects.filter(role='Student').update(registration_status=False)
         message='No course listed now. Go back to homePage to list courses again'
         return render(request, 'registrar/success_failure.html', context={'message':message})
+
+
+@login_required
+def all_students(request):
+    students=User.objects.filter(role='Student')
+    return render(request, 'registrar/all_students.html', {'students': students})
+
+
+@login_required
+def all_professors(request):
+    professors=User.objects.filter(role='Professor')
+    return render(request, 'registrar/all_professors.html', {'professors': professors})
