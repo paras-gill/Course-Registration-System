@@ -37,6 +37,6 @@ urlpatterns = [
     path('studentHome1/', student.views.student_home, name='studentHome1'),
     path('studentHome2/', student.views.view_courses, name='studentHome2'),
     
-    #path('professorHome/', professor.views.professor_home, name='professorHome'),
+    path('professorHome/', professor.views.professor_home, name='professorHome'),
 
 ]
