@@ -1,6 +1,5 @@
 from django import forms
 from .models import RegisteredCourses
-from registrar.models import ListCourses
 
 class SelectCourseForm(forms.ModelForm):  
     select = forms.BooleanField(widget=forms.CheckboxInput(attrs={'label': False}), required=False)
@@ -9,23 +8,13 @@ class SelectCourseForm(forms.ModelForm):
         model = RegisteredCourses
         fields = ['select'] 
     
+    # Override default behaviour of clean() method to return False if check box not selected
     def clean(self,):
         cleaned_data = super().clean()
-        
-        # If the checkbox is not in the cleaned_data, set it to False
         if 'select' not in cleaned_data:
             cleaned_data['select'] = False
         return cleaned_data
-
-    # To hide label of this form field in the table
-    #def __init__(self, *args, **kwargs):
-    #    super().__init__(*args, **kwargs)
-    #    self.fields['select'].label = False
-
-total_listed_courses = len(ListCourses.objects.all()) 
-#print(total_listed_courses)   
-SelectCourseFormSet = forms.formset_factory(SelectCourseForm, extra=total_listed_courses)
-
+ 
 '''
 Why do we use forms.ModelForm as subclass instead of forms.Form ?
 

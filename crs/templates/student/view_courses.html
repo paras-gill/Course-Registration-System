@@ -3,9 +3,33 @@
 {%block title%} Your courses {% endblock title%}
 
 {% block content %}
-    <p>Welcome {{request.user.first_name}}. Your registration process is cmplete.</p>
-    <h3><strong><u>Courses</u></strong></h3>
-        {% for course in registered_courses %}
-        <li>{{course.code.code}} -  {{course.code.name}} </li>
-        {% endfor %} 
+    <div>
+        <p>Welcome {{request.user.first_name}}. Your registration process is complete.</p>
+    </div>
+    
+    <div>
+        <h3><strong><u>Courses</u></strong></h3>
+    </div>
+       
+    <div style = "margin-right: 20px;">
+        <table border = "1" style = "margin: 10px auto; text-align: center;">
+            <thead>
+                <tr>
+                    <th style = "padding: 10px;">S.No.</th>
+                    <th style = "padding: 10px;">Code</th>
+                    <th style = "padding: 10px;">Course Name</th>
+                </tr>
+            </thead>
+
+            <tbody>  
+                    {% for course in registered_courses %}  
+                            <tr>
+                                <td style = "padding: 5px;">{{forloop.counter}}</td>
+                                <td style = "padding: 5px; padding-left: 10px; padding-right: 20px;">{{course.code.code}}</td>
+                                <td style = "padding: 5px; padding-left: 10px; padding-right: 20px;">{{course.code.name}}</td>
+                            </tr>      
+                    {% endfor %} 
+            </tbody>
+        </table>
+    </div>
 {% endblock content %}

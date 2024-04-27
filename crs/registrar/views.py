@@ -20,7 +20,7 @@ def create_course(request):
         if form.is_valid():
             course_code=form.cleaned_data['code']
             course_name=form.cleaned_data['name']
-            message=f'{course_code} - {course_name} course has been created. This course can now be listed for registration.'
+            message=f'<span><strong>{course_code} - {course_name}</strong></span> course has been created. This course can now be listed for registration.'
             form.save()
             return render(request, 'registrar/success_failure.html', {'message' : message})
     else:
