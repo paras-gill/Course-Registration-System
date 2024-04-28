@@ -3,7 +3,7 @@
 {% block title %} Student Homepage {% endblock title %}
 
 {% block content %}
-    <p>Welcome {{request.user.first_name}}! Register for your courses here by checking the boxes.</p>
+    <p>Welcome <strong>{{request.user.first_name}}</strong>! Register for your courses here by checking the boxes.</p>
     <p> 
         <p style="display: inline; color: red;">Note 1:</p> You can register for minimum of 3 and maximum of 6 courses.<br>
         <p style="display: inline; color: red;">Note 2:</p> Maximum  number of students who are allowed to enrol in a course is 20.<br>
@@ -12,7 +12,7 @@
     <div style="display: flex; justify-content: center;">
         
         <div style="margin-right: 20px;">
-            <table border="1" style="margin: 10px auto; text-align: center;margin-right: -10px;">
+            <table border="1" style="margin: 10px auto; text-align: center; margin-right: -10px;">
                 <thead>
                     <tr>
                         <th style="padding: 5px; height: 30px;">S.No.</th>

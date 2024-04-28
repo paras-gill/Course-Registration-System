@@ -1,3 +1,4 @@
-django [version]
+django [version]  // db sqlite shipped along with it
 openpyxl [version]  // for loading excel file into python script fake50students.py which signs up 50 [fake] students
- 
+python [version]
+
