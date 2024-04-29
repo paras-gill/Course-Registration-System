@@ -72,7 +72,7 @@ password: hello!world
    ```
 2. Navigate to the project directory
    ```bash
-   cd course-registration-system
+   cd crs
    ```
 3. Install dependencies
     ```bash
