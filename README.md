@@ -68,7 +68,7 @@ password: hello!world
 
 1. Clone the repository
    ```bash
-   git clone https://github.com/your_username/course-registration-system.git
+   git clone https://github.com/paras-gill/Course-Registration-System.git
    ```
 2. Navigate to the project directory
    ```bash
