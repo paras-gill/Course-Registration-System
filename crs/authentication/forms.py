@@ -5,9 +5,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 User=get_user_model()
 
+
 class LoginForm(forms.Form):
     email = forms.EmailField(max_length=254)
     password = forms.CharField(max_length=63, widget=forms.PasswordInput)
+
 
 class SignupForm(UserCreationForm):  
     class Meta(UserCreationForm.Meta):  

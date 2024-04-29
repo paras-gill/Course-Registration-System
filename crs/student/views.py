@@ -34,7 +34,6 @@ def student_home(request):
             if 3 <= selected_courses_count <= 6:
                 for form, course in zip(formset, courses):
                     status = form.clean()['select']
-                    print(status)
                     reg_course= RegisteredCourses.objects.create(
                         student= User.objects.get(email = request.user),  # user_id is FK in model class, so it must be an instance of User class.
                         code = course.code,
@@ -65,7 +64,7 @@ def student_home(request):
             formset = SelectCourseFormSet() 
             return render(request, 'student/student_home.html', {'formset' : formset, 'courses' : courses})
     
-    else:  # request method is not POST
+    else:  
         formset = SelectCourseFormSet() 
         return render(request, 'student/student_home.html', {'courses':courses, 'formset': formset})
 

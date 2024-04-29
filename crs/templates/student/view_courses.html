@@ -11,25 +11,26 @@
         <h3><strong><u>Courses</u></strong></h3>
     </div>
        
-    <div style = "margin-right: 20px;">
+    <div>
         <table border = "1" style = "margin: 10px auto; text-align: center;">
             <thead>
                 <tr>
-                    <th style = "padding: 10px;">S.No.</th>
-                    <th style = "padding: 10px;">Code</th>
-                    <th style = "padding: 10px;">Course Name</th>
+                    <th>S.No.</th>
+                    <th>Code</th>
+                    <th>Course Name</th>
                 </tr>
             </thead>
 
             <tbody>  
                     {% for course in registered_courses %}  
                             <tr>
-                                <td style = "padding: 5px;">{{forloop.counter}}</td>
-                                <td style = "padding: 5px; padding-left: 10px; padding-right: 20px;">{{course.code.code}}</td>
-                                <td style = "padding: 5px; padding-left: 10px; padding-right: 20px;">{{course.code.name}}</td>
+                                <td >{{forloop.counter}}</td>
+                                <td>{{course.code.code}}</td>
+                                <td>{{course.code.name}}</td>
                             </tr>      
                     {% endfor %} 
             </tbody>
         </table>
     </div>
+    <br><br><br><br><br>
 {% endblock content %}

@@ -15,25 +15,25 @@
             <table border="1" style="margin: 10px auto; text-align: center; margin-right: -10px;">
                 <thead>
                     <tr>
-                        <th style="padding: 5px; height: 30px;">S.No.</th>
-                        <th style="padding: 5px;">Course Code</th>
-                        <th style="padding: 5px;">Course Name</th>
-                        <th style="padding: 5px;">Registration <br> Start Date</th>
-                        <th style="padding: 5px;">Registration <br> End Date (EOD)</th>
-                        <th style="padding: 5px;">Maximum No. <br> of Students</th>
-                        <th style="padding: 5px;">Current No. <br> of Students</th>
+                        <th style="height: 30px;">S.No.</th>
+                        <th>Course Code</th>
+                        <th>Course Name</th>
+                        <th>Registration <br> Start Date</th>
+                        <th>Registration <br> End Date (EOD)</th>
+                        <th>Maximum No. <br> of Students</th>
+                        <th>Current No. <br> of Students</th>
                     </tr>
                 </thead>
                 <tbody>  
                 {% for course in courses %}  
                     <tr>
-                        <td style="padding: 5px; height: 20px;">{{forloop.counter}}</td>
-                        <td style="padding: 5px;  padding-left: 20px; padding-right: 20px;">{{course.code.code}}</td>
-                        <td style="padding: 5px; padding-left: 20px; padding-right: 20px;">{{course.code.name}}</td>
-                        <td style="padding: 5px; padding-left: 20px; padding-right: 20px;">{{course.start_date.date}}</td>
-                        <td style="padding: 5px; padding-left: 20px; padding-right: 20px;">{{course.end_date.date}}</td>
-                        <td style="padding: 5px; padding-left: 20px; padding-right: 20px;">{{course.max_students}}</td>
-                        <td style="padding: 5px; padding-left: 20px; padding-right: 20px;">{{course.student_count}}</td>
+                        <td style="height: 20px;">{{forloop.counter}}</td>
+                        <td>{{course.code.code}}</td>
+                        <td>{{course.code.name}}</td>
+                        <td>{{course.start_date.date}}</td>
+                        <td>{{course.end_date.date}}</td>
+                        <td>{{course.max_students}}</td>
+                        <td>{{course.student_count}}</td>
                     </tr>      
                 {% endfor %} 
                 </tbody>
@@ -46,14 +46,14 @@
                 <table border="1" style="margin: 10px auto; text-align: center;margin-right: 10px;">
                     <thead>
                         <tr>
-                            <th style="padding: 5px;height: 36px;">Select</th>
+                            <th style="height: 36px;">Select</th>
                         </tr>
                     </thead>
                     <tbody>  
                     {{ formset.management_form }}  
                     {% for form in formset %}   
                         <tr>
-                            <td style="padding: 5px; height: 20px">{{form.select}}</td>
+                            <td style="height: 20px">{{form.select}}</td>
                         </tr>      
                     {% endfor %}
                     </tbody>
@@ -74,5 +74,5 @@
                 </script>
         </div>
     </div> 
-    <br>
+    <br><br><br><br><br>
 {% endblock content %}

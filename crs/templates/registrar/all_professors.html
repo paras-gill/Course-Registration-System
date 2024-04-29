@@ -21,21 +21,21 @@
         <table border="1" style="margin: 10px auto; text-align: center;">
             <thead>
                 <tr>
-                    <th style="padding: 5px; height: 30px;">S.No.</th>
-                    <th style="padding: 5px;">Name</th>
-                    <th style="padding: 5px;">email</th>
+                    <th style="height: 30px;">S.No.</th>
+                    <th>Name</th>
+                    <th>email</th>
                 </tr>
             </thead>
             <tbody>  
             {% for prof in professors %}  
                 <tr>
-                    <td style="padding: 5px; height: 20px;">{{forloop.counter}}</td>
-                    <td style="padding: 5px;  padding-left: 20px; padding-right: 20px;">{{prof.first_name}} {{prof.last_name}}</td>
-                    <td style="padding: 5px; padding-left: 20px; padding-right: 20px;"><a href="mailto:{{prof.email}}">{{prof.email}}</a></td>
+                    <td style="height: 20px;">{{forloop.counter}}</td>
+                    <td>{{prof.first_name}} {{prof.last_name}}</td>
+                    <td><a href="mailto:{{prof.email}}">{{prof.email}}</a></td>
                 </tr>      
             {% endfor %} 
             </tbody>
         </table>
     </div>
-    
+    <br><br><br><br><br>
 {% endblock content %}

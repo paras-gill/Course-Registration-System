@@ -7,6 +7,7 @@ from django.db.models import Subquery
 from django.contrib.auth import get_user_model
 User=get_user_model()
 
+
 class CreateCourseForm((forms.ModelForm)):
     class Meta:
         model = AllCourses
@@ -28,19 +29,14 @@ class ListCoursesForm(forms.ModelForm):
         # Exclude coursess already selected in the form
 
         
-        listed_courses_pks=ListCourses.objects.values_list('code_id', flat=True) # Primary keys of all listed courses 
-        # code_id refers to FK field 'code' in ListCourses
+        listed_courses_pks=ListCourses.objects.values_list('code_id', flat=True) 
         # flat = True specifies that the result should be a flat list rather than a list of tuples.
-        # So, the result will be a single list containing the values of the specified field (code_id in this case) rather than a list of 
-        # tuples where each tuple contains the values of all selected fields. This is useful when you only need values from a single field.
         
-        courses_available=AllCourses.objects.exclude(pk__in=Subquery(listed_courses_pks)) # Query set of all available courses
-        #courses = courses.exclude(pk__in=listed_courses)  # pk in listed_courses
+        courses_available=AllCourses.objects.exclude(pk__in=Subquery(listed_courses_pks)) 
         course_choices=[(course.id, f'{course.code} - {course.name}') for course in courses_available]
         self.fields['code'].choices = course_choices
         self.fields['code'].label = 'Course'
         
-        # A prof may be assigned multiple courses, so we show no. of courses assigned to prof in () next to his name when assigning him course
         professors=User.objects.filter(role='Professor')
         professor_choices=[(prof.id, f'Prof. {prof.first_name} {prof.last_name} ({prof.course_count})') for prof in professors] # Prof. <f_name> <l_nam> (no. of courses)
         self.fields['professor'].choices = professor_choices
@@ -51,10 +47,9 @@ class ProfSignUpForm(UserCreationForm):
         model=User   
         fields=('email', 'first_name', 'last_name')
         
-    # set role='Professor' before saving in db.
     def save(self, commit=True):
         user = super().save(commit=False)
-        user.role = 'Professor'  # Set the role field to 'Professor'
+        user.role = 'Professor'  # Set the role field to 'Professor' before saving to db
         if commit:
             user.save()
         return user

@@ -32,6 +32,7 @@ def login_page(request):
                         return redirect('studentHome1')
             else:
                 message = 'Login failed! Incorrect email or password'
+                
     return render(request, 'authentication/login.html', context={'form': form, 'message': message})
 
 

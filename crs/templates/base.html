@@ -7,19 +7,26 @@
         <title> {% block title %} CRS {% endblock title %} </title>
         <style>
              body {
-                text-align: center; /* Center align the body content */
+                text-align: center; /
             }
 
             h1 {
                 display: inline-block;
-                border: 1px solid black; /* Add a thin black border */
-                padding: 10px; /* Add some padding for spacing */
+                border: 1px solid black; 
+                padding: 10px; 
                 margin: 0 auto;
+            }
+
+            th, td{
+                padding: 5px;
+                padding-left: 20px;
+                padding-right: 20px;
             }
         </style>
     </head>
     
     <body>
+        <br><br><br>
         <h1>Course Registration System</h1>
         {%  if user.is_authenticated %}
             <p> 
